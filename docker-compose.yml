@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  webapi_poc:
+    image: ${DOCKER_REGISTRY}webapipoc
+    build:
+      context: .
+      dockerfile: WebAPI_POC/Dockerfile

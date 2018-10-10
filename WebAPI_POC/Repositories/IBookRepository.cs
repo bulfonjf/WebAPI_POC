@@ -8,5 +8,9 @@ namespace WebAPI_POC.Repositories
     {
         Task<IEnumerable<Entities.Book>> GetBooksAsync();
         Task<Entities.Book> GetBookAsync(Guid id);
+
+        void AddBook(Entities.Book bookToAdd);
+
+        Task<bool> SaveChangesAsync();
     }
 }

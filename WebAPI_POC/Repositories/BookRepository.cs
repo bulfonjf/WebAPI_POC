@@ -16,6 +16,16 @@ namespace WebAPI_POC.Repositories
             this.booksContext = booksContext;
         }
 
+        public void AddBook(Book bookToAdd)
+        {
+            if (bookToAdd == null)
+            {
+                throw new ArgumentNullException(nameof(bookToAdd));
+            }
+
+            booksContext.Add(bookToAdd);
+        }
+
         public Task<Book> GetBookAsync(Guid id)
         {
             var result = booksContext.Books.FirstOrDefault(b => b.Id == id);
@@ -26,6 +36,11 @@ namespace WebAPI_POC.Repositories
         {
             var result = booksContext.Books;
             return Task.FromResult<IEnumerable<Book>>(result);
+        }
+
+        public async Task<bool> SaveChangesAsync()
+        {
+            return (await booksContext.SaveChangesAsync() > 0);
         }
     }
 }

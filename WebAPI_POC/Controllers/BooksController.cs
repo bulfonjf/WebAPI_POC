@@ -26,7 +26,7 @@ namespace WebAPI_POC.Controllers
         {
             var booksEntities = await bookRepository.GetBooksAsync();
 
-            var booksModel = _mapper.Map(booksEntities, new List<Models.Book>());
+            var booksModel = _mapper.Map<List<Models.Book>>(booksEntities);
 
             return Ok(booksEntities);
         }
@@ -36,7 +36,7 @@ namespace WebAPI_POC.Controllers
         {
             var bookEntity = await bookRepository.GetBookAsync(id);
 
-            var bookModel = _mapper.Map(bookEntity, new Models.Book());
+            var bookModel = _mapper.Map<Models.Book>(bookEntity);
 
             return Ok(bookModel);
         }

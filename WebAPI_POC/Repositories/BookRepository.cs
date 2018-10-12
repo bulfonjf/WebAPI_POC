@@ -38,6 +38,11 @@ namespace WebAPI_POC.Repositories
             return Task.FromResult<IEnumerable<Book>>(result);
         }
 
+        public Task<IEnumerable<Book>> GetBooksAsync(IEnumerable<Guid> bookIds)
+        {
+            return Task.FromResult(booksContext.Books.Where(b => bookIds.Contains(b.Id)));
+        }
+
         public async Task<bool> SaveChangesAsync()
         {
             return (await booksContext.SaveChangesAsync() > 0);
